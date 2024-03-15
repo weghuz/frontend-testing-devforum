@@ -40,6 +40,9 @@ export default defineConfig({
 ```
 
 You should test at least these things:
+When defining tests try to use the findByRole from the render function
+Also try to use userEvent when testing input fields and clicking buttons.
+Remember that tests need to be async and await the user actions.
 
 - Name can not be less than 3 characters long
 - Name can not be longer than 20 characters long
