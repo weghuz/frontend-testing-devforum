@@ -20,8 +20,9 @@ To add tests you need to add these packages (We're using Vitest for this code-al
     - @vitejs/plugin-react (For rendering react with vite)
     - vite-tsconfig-paths (Vite needs this to play nice with next imports)
     - vitest-ui (Cool ui for vite. Run with pnpm vitest --ui (It opens in the browser))
-    - @testing-library/react (For rendering and testing react components in tests)
     - jsdom (For rendering the dom, testing-library needs a dom-driver. jsdom is the most complete one)
+    - @testing-library/react (For rendering and testing react components in tests)
+    - @testing-library/user-event (For testing user agent-like behaviour when testing components)
 
 Your config file should be named `vitest.config.ts` and should contain this config:
 ```ts
