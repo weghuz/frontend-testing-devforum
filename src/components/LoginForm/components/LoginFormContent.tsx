@@ -36,7 +36,7 @@ export function LoginFormContent() {
         className="flex flex-col space-y-4 max-w-[600px] grow pt-10 text-black"
       >
         {/* For each input, register it and display any errors */}
-        <label htmlFor="username">Användarnamn</label>
+        <label htmlFor="username" className="text-white">Användarnamn</label>
         <input
           {...register("username", { required: "Username is required" })}
           type="text"
@@ -45,7 +45,7 @@ export function LoginFormContent() {
         />
         {errors.username && <FormError>{errors.username.message}</FormError>}
 
-        <label htmlFor="password">Lösenord</label>
+        <label htmlFor="password" className="text-white">Lösenord</label>
         <input
           {...register("password", { required: "Password is required" })}
           type="password"
@@ -54,7 +54,7 @@ export function LoginFormContent() {
         />
         {errors.password && <FormError>{errors.password.message}</FormError>}
 
-        <label htmlFor="passwordAgain">Lösenord igen</label>
+        <label htmlFor="passwordAgain" className="text-white">Lösenord igen</label>
         <input
           {...register("passwordAgain", {
             required: "Please confirm your password",

@@ -21,8 +21,18 @@ To add tests you need to add these packages (We're using Vitest for this code-al
     - vite-tsconfig-paths (Vite needs this to play nice with next imports)
     - vitest-ui (Cool ui for vite. Run with pnpm vitest --ui (It opens in the browser))
     - jsdom (For rendering the dom, testing-library needs a dom-driver. jsdom is the most complete one)
+    - @testing-library/jest-dom (For unique expects for the dom nodes like toHaveValue etc.)
     - @testing-library/react (For rendering and testing react components in tests)
     - @testing-library/user-event (For testing user agent-like behaviour when testing components)
+
+To make it easy to run these functions you can extend you packacke.json with custom scripts like these:
+
+```json
+  "scripts": {
+    "test": "vitest",
+    "test-ui": "vitest --ui"
+  },
+```
 
 Your config file should be named `vitest.config.ts` and should contain this config:
 ```ts
@@ -33,10 +43,21 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
     plugins: [react(), tsconfigPaths()],
     test: {
+        globals: true,
         environment: 'jsdom',
-        setupFiles: ['@testing-library/react/dont-cleanup-after-each'],
+        setupFiles: ['./vitest.setup.ts'],
     },
 });
+```
+To get the dom functions for testing for example toHaveTextContent or toHaveValue for dom elements
+You need to extend the expect with those functions using @testing-library/jest-dom
+Create a file named vitest.d.ts (For typescript expect extension typing)
+```ts
+import '@testing-library/jest-dom';
+```
+Also create the file vitest.setup.ts for the extensions to take place on the expect function
+```ts
+import '@testing-library/jest-dom';
 ```
 
 You should test at least these things:
